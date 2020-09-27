@@ -16,17 +16,19 @@ int dev_close (struct inode *file_object, struct file *file_status)
 
 ssize_t dev_read (struct file *file_status, char __user *user_buff, size_t user_buff_size, loff_t *file_offset)
 {
-    ssize_t io_size = DEVICE_BUFF_SIZE - *file_offset >= user_buff_size ? user_buff_size : DEVICE_BUFF_SIZE - *file_offset;
-    printk("Lakka device <character_module> received IO request <read> with offset %lld and buff size %ld.", *file_offset, io_size);
+    int io_size = DEVICE_BUFF_SIZE - *file_offset >= user_buff_size ? user_buff_size : DEVICE_BUFF_SIZE - *file_offset;
+    printk("Lakka device <character_module> received IO request <read> with offset %lld and buff size %d.", *file_offset, io_size);
     copy_to_user(user_buff, &plakka_cdev->buff[*file_offset], io_size);
+    *file_offset += io_size;
     return io_size;
 }
 
 ssize_t dev_write (struct file *file_status, const char __user *user_buff, size_t user_buff_size, loff_t *file_offset)
 {
-    ssize_t io_size = DEVICE_BUFF_SIZE - *file_offset >= user_buff_size ? user_buff_size : DEVICE_BUFF_SIZE - *file_offset;
-    printk("Lakka device <character_module> received IO request <write> with offset %lld and buff size %ld.", *file_offset, io_size);
+    int io_size = DEVICE_BUFF_SIZE - *file_offset >= user_buff_size ? user_buff_size : DEVICE_BUFF_SIZE - *file_offset;
+    printk("Lakka device <character_module> received IO request <write> with offset %lld and buff size %d.", *file_offset, io_size);
     copy_from_user(&plakka_cdev->buff[*file_offset], user_buff, io_size);
+    *file_offset += io_size;
     return io_size;
 }
 

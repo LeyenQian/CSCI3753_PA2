@@ -41,9 +41,9 @@
  - cd ./test
  - ./a.out
  - type "?" for showing support commands, sample code as following:
- - w | 22 | hello_from_user_space</br>
+ - w|22|hello_from_user_space</br>
  write "hello_from_user_space" to device buffer with the buff size of 22 bytes.
- - s | 10 | 0</br>
+ - s|10|0</br>
  set the device file IO offset to 10 (bytes) relative to the beginning of the device buffer.
- - r | 21</br>
+ - r|21</br>
  read content from device buffer with the buff size of 21 bytes.
