@@ -32,7 +32,7 @@
  - make all
  - insmod lakka_hello_module.ko
  - cat /proc/devices | grep lakka</br>
- show the newly registed device
+ show the newly registered device
  - mknod -m 777 /dev/lakka_character_device_file c 440 0</br>
  Please check the final major and minor number through "dmesg".</br>
  Numbers may change due to conflict, default are 440 and 0.
