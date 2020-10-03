@@ -9,7 +9,7 @@ int dev_open (struct inode *file_object, struct file *file_status)
 
 int dev_close (struct inode *file_object, struct file *file_status)
 {
-    plakka_cdev->open_count += 1;
+    plakka_cdev->close_count += 1;
     printk("Lakka device <character_module> is being close. <close_count %u>", plakka_cdev->close_count);
     return IO_SUCCESS;
 }
